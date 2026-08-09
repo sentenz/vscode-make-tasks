@@ -16,7 +16,7 @@
   },
   "engines": {
     "vscode": "^1.125.0",
-    "node": ">=20"
+    "node": ">=22"
   },
   "devEngines": {
     "runtime": {
