@@ -80,14 +80,15 @@ A native VS Code task explorer for documented Makefile targets.
   > Tree view grouped by workspace and Makefile when necessary.
 
   ```make
-  ## Build the application
-  build:
-  	go build ./...
-  .PHONY: build
-
-  test: ## Run the test suite
+  ## Run the test suite
+  test:
   	go test ./...
   .PHONY: test
+
+  ## Build the application
+  build: test
+  	go build ./...
+  .PHONY: build
   ```
 
 - Categorization
