@@ -79,17 +79,63 @@ A native VS Code task explorer for documented Makefile targets.
 - Explorer
   > Tree view grouped by workspace and Makefile when necessary.
 
+  ```make
+  ## Build the application
+  build:
+  	go build ./...
+  .PHONY: build
+
+  test: ## Run the test suite
+  	go test ./...
+  .PHONY: test
+  ```
+
 - Categorization
   > Optional target categories from canonical section comments.
+
+  ```make
+  # === Build ================================================================
+
+  build: ## Build the application
+  	go build ./...
+
+  # === Test =================================================================
+
+  test: ## Run the test suite
+  	go test ./...
+  ```
 
 - Input metadata
   > Optional usage metadata for target input parameters.
 
+  ```make
+  # Usage: make deploy ENV=<name> [VERSION=<version>]
+  #
+  deploy: ## Deploy the application
+  	./scripts/deploy --env "$(ENV)" --version "$(VERSION)"
+  .PHONY: deploy
+  ```
+
 - Execution
   > Click or use the inline play button to execute a target as a VS Code task.
 
+  ```make
+  clean: ## Remove generated files
+  	rm -rf dist
+  .PHONY: clean
+  ```
+
 - Invocation
   > Run targets with positional arguments or Make variable assignments.
+
+  ```make
+  # Example: make build test MODE=release
+  build: ## Build the application
+  	go build -tags "$(MODE)" ./...
+
+  test: ## Run the test suite
+  	go test ./...
+  ```
 
 - Quick-pick
   > Quick-pick command for keyboard-driven execution.
@@ -99,6 +145,16 @@ A native VS Code task explorer for documented Makefile targets.
 
 - Workspace
   > Multi-root workspace and multiple-Makefile support.
+
+  ```make
+  # Makefile
+  build: ## Build the application
+  	go build ./...
+
+  # services/api/Makefile
+  build: ## Build the API
+  	go build ./cmd/api
+  ```
 
 - Auto-refresh
   > Automatic refresh after matching Makefile changes when `makefileTasks.autoRefresh` is enabled.
