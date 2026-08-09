@@ -18,8 +18,8 @@ A native VS Code task explorer for documented Makefile targets.
 
 1. Insights and Details
 
-    - [Make Tasks Specification](docs/make-tasks-specification.md)
-      > The Make Tasks Specification is the normative reference for annotation syntax and externally observable behavior.
+    - Specification
+      > The [Make Tasks Specification](docs/make-tasks-specification.md) is the normative reference for annotation syntax and externally observable behavior.
 
     - Activity Bar
       > Dedicated Makefile icon in the Activity Bar.
@@ -138,20 +138,8 @@ A native VS Code task explorer for documented Makefile targets.
     - Tasks
       > The repository Makefile provides documented targets for installing dependencies, validating changes, building, packaging, and installing the extension.
 
-      ```make
-      ## Install the VS Code extension development dependencies
-      vscode-extension-dependencies:
-      	cd "$(VSCODE_EXTENSION_DIR_ABS)" && $(NPM) ci
-      .PHONY: vscode-extension-dependencies
-
-      ## Validate, test, and build the VS Code extension
-      vscode-extension-build: vscode-extension-dependencies
-      	cd "$(VSCODE_EXTENSION_DIR_ABS)" && $(NPM) run check
-      	cd "$(VSCODE_EXTENSION_DIR_ABS)" && $(NPM) run build
-      .PHONY: vscode-extension-build
-
-      ## Build and package the VS Code extension as a VSIX archive
-      vscode-extension-package: vscode-extension-dependencies
-      	cd "$(VSCODE_EXTENSION_DIR_ABS)" && $(VSCE) package --no-dependencies
-      .PHONY: vscode-extension-package
+      ```bash
+      make vscode-extension-dependencies
+      make vscode-extension-build
+      make vscode-extension-package
       ```
