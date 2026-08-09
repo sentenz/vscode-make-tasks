@@ -14,8 +14,8 @@ function extensionIdFromManifest(): string {
   return `${manifest.publisher}.${manifest.name}`;
 }
 
-suite('Makefile Tasks extension', () => {
-  test('activates and contributes documented Makefile tasks', async () => {
+suite('Make Tasks extension', () => {
+  test('activates and contributes documented Make Tasks', async () => {
     const extension = vscode.extensions.getExtension(extensionIdFromManifest());
     assert.ok(extension, 'Extension should be available in the development host.');
 

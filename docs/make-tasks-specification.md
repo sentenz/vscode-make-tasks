@@ -1,6 +1,6 @@
 # Make Tasks Specification
 
-The Make Tasks Specification defines the Makefile annotations and task behavior supported by the [Makefile Tasks](../README.md) extension for the [Visual Studio Code task system](https://code.visualstudio.com/docs/debugtest/tasks). It establishes a compact contract for documented-target discovery, descriptions, categories, inputs, task resolution, execution, and workspace presentation.
+The Make Tasks Specification defines the Makefile annotations and task behavior supported by the [Make Tasks](../README.md) extension for the [Visual Studio Code task system](https://code.visualstudio.com/docs/debugtest/tasks). It establishes a compact contract for documented-target discovery, descriptions, categories, inputs, task resolution, execution, and workspace presentation.
 
 The specification covers only the extension's recognized annotation subset. [GNU Make](https://www.gnu.org/software/make/manual/make.html) remains authoritative for Makefile syntax, dependency evaluation, recipes, and execution semantics.
 
@@ -34,11 +34,11 @@ The specification covers only the extension's recognized annotation subset. [GNU
 
 ## 1. Specification
 
-The specification defines the supported annotation syntax, discovery and task behavior, configuration controls, and representative examples for Makefile Tasks.
+The specification defines the supported annotation syntax, discovery and task behavior, configuration controls, and representative examples for Make Tasks.
 
 ### 1.1. Scope
 
-Makefile Tasks exposes documented Makefile targets through an Activity Bar explorer, extension commands, and the Visual Studio Code task system. This specification defines the annotation and integration behavior required for those interfaces; it does not define general Makefile parsing.
+Make Tasks exposes documented Makefile targets through an Activity Bar explorer, extension commands, and the Visual Studio Code task system. This specification defines the annotation and integration behavior required for those interfaces; it does not define general Makefile parsing.
 
 #### 1.1.1. Conformance
 
@@ -343,10 +343,10 @@ None of these constructs produces a discovered target.
 - Visual Studio Code [Task Provider](https://code.visualstudio.com/api/extension-guides/task-provider) documentation.
 - IETF [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119) standard.
 - IETF [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174) standard.
-- Makefile Tasks [parser](../src/parser.ts) implementation.
-- Makefile Tasks [parser tests](../test/parser.test.ts) test suite.
-- Makefile Tasks [task provider](../src/tasks.ts) implementation.
-- Makefile Tasks [discovery](../src/discovery.ts) implementation.
-- Makefile Tasks [extension activation](../src/extension.ts) implementation.
-- Makefile Tasks [explorer](../src/tree.ts) implementation.
-- Makefile Tasks [extension manifest](../package.json) implementation.
+- Make Tasks [parser](../src/parser.ts) implementation.
+- Make Tasks [parser tests](../test/parser.test.ts) test suite.
+- Make Tasks [task provider](../src/tasks.ts) implementation.
+- Make Tasks [discovery](../src/discovery.ts) implementation.
+- Make Tasks [extension activation](../src/extension.ts) implementation.
+- Make Tasks [explorer](../src/tree.ts) implementation.
+- Make Tasks [extension manifest](../package.json) implementation.

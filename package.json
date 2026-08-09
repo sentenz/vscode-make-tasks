@@ -50,31 +50,31 @@
       {
         "command": "makefileTasks.refresh",
         "title": "Refresh Targets",
-        "category": "Makefile Tasks",
+        "category": "Make Tasks",
         "icon": "$(refresh)"
       },
       {
         "command": "makefileTasks.runTarget",
         "title": "Run Target",
-        "category": "Makefile Tasks",
+        "category": "Make Tasks",
         "icon": "$(play)"
       },
       {
         "command": "makefileTasks.runTargetWithArgs",
         "title": "Run Target with Arguments",
-        "category": "Makefile Tasks",
+        "category": "Make Tasks",
         "icon": "$(run-all)"
       },
       {
         "command": "makefileTasks.runTargetPicker",
         "title": "Run Target…",
-        "category": "Makefile Tasks",
+        "category": "Make Tasks",
         "icon": "$(list-selection)"
       },
       {
         "command": "makefileTasks.openTarget",
         "title": "Go to Target Definition",
-        "category": "Makefile Tasks",
+        "category": "Make Tasks",
         "icon": "$(go-to-file)"
       }
     ],
@@ -82,7 +82,7 @@
       "activitybar": [
         {
           "id": "makefileTasks",
-          "title": "Makefile Tasks",
+          "title": "Make Tasks",
           "icon": "assets/makefile.svg"
         }
       ]
@@ -93,7 +93,7 @@
           "id": "makefileTasks.targets",
           "name": "Targets",
           "icon": "assets/makefile.svg",
-          "contextualTitle": "Makefile Tasks"
+          "contextualTitle": "Make Tasks"
         }
       ]
     },
@@ -136,7 +136,7 @@
       ]
     },
     "configuration": {
-      "title": "Makefile Tasks",
+      "title": "Make Tasks",
       "properties": {
         "makefileTasks.makeCommand": {
           "type": "string",

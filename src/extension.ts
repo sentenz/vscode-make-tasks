@@ -6,7 +6,7 @@ import { createMakeTask, MakefileTaskProvider } from './tasks';
 import { MakefileTreeProvider, targetFromArgument, type TargetNode } from './tree';
 
 export function activate(context: vscode.ExtensionContext): void {
-  const output = vscode.window.createOutputChannel('Makefile Tasks', { log: true });
+  const output = vscode.window.createOutputChannel('Make Tasks', { log: true });
   const discovery = new MakefileDiscovery(output);
   const treeProvider = new MakefileTreeProvider(context.extensionUri);
   const treeView = vscode.window.createTreeView('makefileTasks.targets', {
@@ -26,7 +26,7 @@ export function activate(context: vscode.ExtensionContext): void {
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       output.error(`Refresh failed: ${message}`);
-      void vscode.window.showErrorMessage(`Makefile Tasks: ${message}`);
+      void vscode.window.showErrorMessage(`Make Tasks: ${message}`);
     }
   };
 
@@ -104,7 +104,7 @@ export function activate(context: vscode.ExtensionContext): void {
         await runTarget(target, splitArguments(input));
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        void vscode.window.showErrorMessage(`Makefile Tasks: ${message}`);
+        void vscode.window.showErrorMessage(`Make Tasks: ${message}`);
       }
     }),
     vscode.commands.registerCommand('makefileTasks.openTarget', async (argument?: TargetNode | MakefileTarget) => {
