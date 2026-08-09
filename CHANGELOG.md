@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.5](https://github.com/sentenz/vscode-make-tasks/compare/1.5.4...1.5.5) (2026-08-09)
+
+### Bug Fixes
+
+* **deps:** update js-yaml to v4.3.1 and nanoid to v3.3.18 ([8a6b41b](https://github.com/sentenz/vscode-make-tasks/commit/8a6b41b7fc5a46eb12c0ff869a77ee8425d473db))
+
 ## [1.5.4](https://github.com/sentenz/vscode-make-tasks/compare/1.5.3...1.5.4) (2026-08-09)
 
 ### Bug Fixes
