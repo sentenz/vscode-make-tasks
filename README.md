@@ -22,30 +22,33 @@ A native VS Code task explorer for documented Makefile targets.
       > The [Make Tasks Specification](docs/make-tasks-specification.md) is the normative reference for annotation syntax and externally observable behavior.
 
     - Activity Bar
-      > Dedicated Makefile icon in the Activity Bar.
+      > Dedicated Makefile icon and target explorer in the Activity Bar.
+
+    - Explorer
+      > Target grouping by workspace, Makefile, and category when necessary.
 
     - Execution
-      > Click or use the inline play button to execute a target as a VS Code task.
+      > Target execution as native VS Code tasks from the explorer.
 
-    - Quick-pick
-      > Quick-pick command for keyboard-driven execution.
+    - Quick Pick
+      > Keyboard-driven target selection and execution.
 
     - Navigation
-      > Go directly to a target definition.
+      > Direct navigation to target definitions.
 
     - Workspace
       > Multi-root workspace and multiple-Makefile support.
 
     - Auto-refresh
-      > Automatic refresh after matching Makefile changes when `makefileTasks.autoRefresh` is enabled.
+      > Automatic target refresh after matching Makefile changes when `makefileTasks.autoRefresh` is enabled.
 
     - Configuration
       > Configurable Make command, discovery globs, exclusions, sorting, click behavior, and automatic refresh.
 
-2. Makefile Annotation
+2. Usage and Instructions
 
     - [Tasks](docs/make-tasks-specification.md#151-tasks)
-      > The extension discovers documented Makefile targets and presents them as VS Code tasks. Targets are documented with a `##` description comment as preceding or inline annotations. The extension ignores undocumented targets, helper rules, pattern rules, variable assignments, and unsupported target names.
+      > The extension discovers documented Makefile targets and presents them as VS Code tasks. A target is discoverable when it has a non-empty preceding or inline `##` description. The extension ignores undocumented targets, helper rules, pattern rules, variable assignments, and unsupported target names.
 
       ```make
       ## Single-line description for the build task
@@ -84,7 +87,7 @@ A native VS Code task explorer for documented Makefile targets.
       ```
 
     - [Input Metadata](docs/make-tasks-specification.md#153-inputs)
-      > Add optional usage metadata for positional arguments or Make variable assignments accepted by a target.
+      > Document expected positional arguments or Make variable assignments with optional `# Usage:` metadata. Usage metadata is descriptive and does not validate or supply runtime arguments.
 
       ```make
       # Usage: make deploy ENV=<name> [VERSION=<version>]
@@ -94,23 +97,8 @@ A native VS Code task explorer for documented Makefile targets.
       .PHONY: deploy
       ```
 
-    - Explorer
-      > Documented targets are grouped by workspace and Makefile when necessary.
-
-      ```make
-      ## Run the test suite
-      test:
-      	go test ./...
-      .PHONY: test
-
-      ## Build the application
-      build: test
-      	go build ./...
-      .PHONY: build
-      ```
-
-    - Invocation
-      > Run targets with positional arguments or Make variable assignments.
+    - [Invocation](docs/make-tasks-specification.md#133-input-processing-and-execution)
+      > Run targets with positional arguments or Make variable assignments through **Run Target with Arguments** or `makefileTarget` task definitions.
 
       ```make
       # Usage: make build [MODE=<mode>]
@@ -136,10 +124,11 @@ A native VS Code task explorer for documented Makefile targets.
 2. Usage and Instructions
 
     - Tasks
-      > The repository Makefile provides documented targets for installing dependencies, validating changes, building, packaging, and installing the extension.
+      > The repository Makefile provides documented targets for installing dependencies, validating changes, building, packaging, and installing the extension locally.
 
       ```bash
       make vscode-extension-dependencies
       make vscode-extension-build
       make vscode-extension-package
+      make vscode-extension-install
       ```
