@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.4](https://github.com/sentenz/vscode-make-tasks/compare/1.5.3...1.5.4) (2026-08-09)
+
+### Bug Fixes
+
+* **deps:** update dependency eslint to v10.8.1 ([#40](https://github.com/sentenz/vscode-make-tasks/issues/40)) ([7cc0574](https://github.com/sentenz/vscode-make-tasks/commit/7cc05741682c807c5c5dbefd476da7caa32472b1))
+
 ## [1.5.3](https://github.com/sentenz/vscode-make-tasks/compare/1.5.2...1.5.3) (2026-08-07)
 
 ### Bug Fixes
