@@ -42,7 +42,7 @@ A native VS Code task explorer for documented Makefile targets.
     - Configuration
       > Configurable Make command, discovery globs, exclusions, sorting, click behavior, and automatic refresh.
 
-2. Usage and Instructions
+2. Makefile Annotation
 
     - [Tasks](docs/make-tasks-specification.md#151-tasks)
       > The extension discovers documented Makefile targets and presents them as VS Code tasks. Targets are documented with a `##` description comment as preceding or inline annotations. The extension ignores undocumented targets, helper rules, pattern rules, variable assignments, and unsupported target names.
