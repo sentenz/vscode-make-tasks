@@ -11,6 +11,7 @@
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "ignorePaths": [
+    "**/vendor/**",
     "**/node_modules/**",
     "**/bower_components/**",
     "**/charts/**",
@@ -21,6 +22,11 @@
     "ignorePaths": [
       "tests/**",
       "**/tests/**"
+    ]
+  },
+  "devcontainer": {
+    "managerFilePatterns": [
+      "/^\\.devcontainer/.+/devcontainer\\.json$/"
     ]
   },
   "labels": [
@@ -36,18 +42,17 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update versioned Docker image references in Makefiles and KinD cluster configuration.",
+      "description": "Update versioned Docker image references in Makefiles.",
       "managerFilePatterns": [
         "**/[Mm]akefile",
         "**/GNUMakefile",
-        "**/*.mk",
-        "**/kind-cluster.{yml,yaml}"
+        "**/*.mk"
       ],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "(?<depName>(?:(?:[A-Za-z0-9.-]+(?::[0-9]+)?/)?[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)+)):(?<currentValue>v?\\d[0-9A-Za-z_.-]*)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"
       ],
-      "autoReplaceStringTemplate": "{{{prefix}}}{{{depName}}}:{{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{else}}{{#if currentDigest}}@{{{currentDigest}}}{{/if}}{{/if}}",
+      "autoReplaceStringTemplate": "{{{depName}}}:{{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{else}}{{#if currentDigest}}@{{{currentDigest}}}{{/if}}{{/if}}",
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
     }
@@ -56,7 +61,9 @@
     {
       "description": "Group major updates.",
       "matchManagers": [
-        "!npm"
+        "!npm",
+        "!nvm",
+        "!github-actions"
       ],
       "matchDatasources": [
         "!docker"
@@ -71,7 +78,9 @@
     {
       "description": "Group minor updates.",
       "matchManagers": [
-        "!npm"
+        "!npm",
+        "!nvm",
+        "!github-actions"
       ],
       "matchDatasources": [
         "!docker"
@@ -86,7 +95,9 @@
     {
       "description": "Group patch updates.",
       "matchManagers": [
-        "!npm"
+        "!npm",
+        "!nvm",
+        "!github-actions"
       ],
       "matchDatasources": [
         "!docker"
@@ -99,8 +110,11 @@
       "automerge": false
     },
     {
-      "description": "Group npm dependency updates from package.json and package-lock.json.",
+      "description": "Group npm dependency updates.",
       "matchManagers": [
+        "npm"
+      ],
+      "matchDatasources": [
         "npm"
       ],
       "matchFileNames": [
@@ -179,30 +193,55 @@
         "digest",
         "pinDigest"
       ],
+      "pinDigests": true,
       "groupName": "makefile container images",
       "groupSlug": "makefile-container-images",
       "automerge": false
     },
     {
-      "description": "Group KinD node image updates.",
+      "description": "Group Dev Container feature updates.",
       "matchManagers": [
-        "custom.regex"
+        "devcontainer"
+      ],
+      "matchDepTypes": [
+        "feature"
       ],
       "matchDatasources": [
         "docker"
-      ],
-      "matchFileNames": [
-        "/(^|/)kind-cluster\\.ya?ml$/"
       ],
       "matchUpdateTypes": [
         "major",
         "minor",
         "patch",
-        "digest",
-        "pinDigest"
+        "digest"
       ],
-      "groupName": "kind node images",
-      "groupSlug": "kind-node-images",
+      "groupName": "devcontainer features",
+      "groupSlug": "devcontainer-features",
+      "semanticCommits": "enabled",
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps",
+      "automerge": false
+    },
+    {
+      "description": "Group GitHub Actions dependency updates.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDepTypes": [
+        "action",
+        "github-runner"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "digest"
+      ],
+      "groupName": "github actions dependencies",
+      "groupSlug": "github-actions-dependencies",
+      "semanticCommits": "enabled",
+      "semanticCommitType": "ci",
+      "semanticCommitScope": "deps",
       "automerge": false
     },
     {
@@ -235,6 +274,7 @@
         "digest",
         "pinDigest"
       ],
+      "pinDigests": true,
       "groupName": "github actions container images",
       "groupSlug": "github-actions-container-images",
       "semanticCommits": "enabled",
@@ -243,18 +283,17 @@
       "automerge": false
     },
     {
-      "description": "Group Node.js runtime updates.",
+      "description": "Keep Node.js runtime versions aligned across package metadata, .nvmrc, and GitHub Actions.",
+      "matchManagers": [
+        "npm",
+        "nvm",
+        "github-actions"
+      ],
       "matchDatasources": [
-        "docker",
         "node-version"
       ],
       "matchPackageNames": [
-        "/(?:^|/)node$/",
-        "!calico/node",
-        "!docker.io/calico/node",
-        "!ghcr.io/devcontainers/features/node",
-        "!kindest/node",
-        "!docker.io/kindest/node"
+        "node"
       ],
       "groupName": "Node.js",
       "groupSlug": "node-js",
