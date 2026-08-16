@@ -41,7 +41,7 @@ jobs:
 
       - name: Run VS Code Extension
         id: extension
-        uses: sentenz/actions/vscode-extension@99935197a6935a691cb151a3e469f1a969bf7714 # 1.4.2
+        uses: sentenz/actions/vscode-extension@d3b0a0d59ac008f6918c5d8304acab2c9d1abbf2 # 1.4.3
         with:
           output-path: "out/extension.vsix"
           no-dependencies: "true"
@@ -97,7 +97,7 @@ jobs:
           fi
 
       - name: Package VS Code Extension
-        uses: sentenz/actions/vscode-extension@99935197a6935a691cb151a3e469f1a969bf7714 # 1.4.2
+        uses: sentenz/actions/vscode-extension@d3b0a0d59ac008f6918c5d8304acab2c9d1abbf2 # 1.4.3
         with:
           version: ${{ inputs.version }}
           output-path: "out/extension.vsix"
