@@ -2,7 +2,7 @@
   "name": "vs-code-make-tasks",
   "displayName": "VS Code Make Tasks",
   "description": "Discover documented Makefile targets and run them from an Activity Bar task explorer.",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "publisher": "sentenz",
   "license": "MIT",
   "icon": "assets/icon.png",

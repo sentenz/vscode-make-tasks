@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.0](https://github.com/sentenz/vscode-make-tasks/compare/1.6.1...1.7.0) (2026-08-29)
+
+### Features
+
+* add MCP target discovery and strengthen tests ([#53](https://github.com/sentenz/vscode-make-tasks/issues/53)) ([c294f78](https://github.com/sentenz/vscode-make-tasks/commit/c294f7843200a75329258fd0edaa9316d7633948))
+
 ## [1.6.1](https://github.com/sentenz/vscode-make-tasks/compare/1.6.0...1.6.1) (2026-08-29)
 
 ### Bug Fixes
