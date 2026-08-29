@@ -1,6 +1,11 @@
+import { createRequire } from 'node:module';
 import { McpServer } from '@modelcontextprotocol/server';
 import * as z from 'zod/v4';
 import { listMakeTargets } from './target-service.mjs';
+
+const packageVersion = (
+  createRequire(import.meta.url)('../../package.json') as { version: string }
+).version;
 
 const targetSchema = z.object({
   name: z.string(),
@@ -20,7 +25,7 @@ export function createMakeTasksServer(
 ): McpServer {
   const server = new McpServer({
     name: 'vs-code-make-tasks',
-    version: '1.6.1',
+    version: packageVersion,
   });
 
   server.registerTool(
@@ -57,4 +62,3 @@ export function createMakeTasksServer(
 
   return server;
 }
-
