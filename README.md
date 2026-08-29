@@ -12,7 +12,7 @@ A native VS Code task explorer for documented Makefile targets.
 ### 1.1. Prerequisites
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
-  > Visual Studio Code (>=1.125) is required to run the extension.
+  > Visual Studio Code (>=1.133) is required to run the extension.
 
 ### 1.2. Usage
 
