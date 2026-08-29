@@ -225,6 +225,7 @@
     "compile:integration": "tsc -p tsconfig.integration.json",
     "test:integration": "npm run build && npm run compile:integration && node .integration-test/test/integration/runTest.js",
     "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
     "mcp:start": "npm run build && node dist/mcp/index.mjs",
     "mcp:inspect": "npm run build && npx @modelcontextprotocol/inspector node dist/mcp/index.mjs",
     "watch": "tsc -p tsconfig.build.json --watch",
@@ -251,4 +252,3 @@
     "workspace"
   ]
 }
-
