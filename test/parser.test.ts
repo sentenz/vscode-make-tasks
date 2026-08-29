@@ -17,6 +17,14 @@ test: ## Run the test suite
     ]);
   });
 
+  it('prefers inline documentation and normalizes Windows line endings', () => {
+    const result = parseMakefile('## Pending description\r\nbuild: dependency ## Inline description\r\n');
+
+    expect(result).toEqual([
+      { name: 'build', description: 'Inline description', line: 1 },
+    ]);
+  });
+
   it('requires documentation to be immediately adjacent', () => {
     const result = parseMakefile(`
 ## This no longer applies
@@ -75,6 +83,34 @@ secrets-sops-view:
         line: 8,
       },
       { name: 'secrets-sops-view', description: 'View one file', line: 13 },
+    ]);
+  });
+
+  it('matches Usage keywords case-insensitively but target names case-sensitively', () => {
+    const result = parseMakefile(`# uSaGe: MAKE alpha FIRST=<value>
+#
+## Build variants
+alpha beta:
+
+# Usage: make ALPHA IGNORED=<value>
+alpha-again: ## Build another variant
+`);
+
+    expect(result).toEqual([
+      { name: 'alpha', description: 'Build variants', usage: 'FIRST=<value>', line: 3 },
+      { name: 'beta', description: 'Build variants', line: 3 },
+      { name: 'alpha-again', description: 'Build another variant', line: 6 },
+    ]);
+  });
+
+  it('keeps documented targets when matching Usage metadata has no suffix', () => {
+    const result = parseMakefile(`# Usage: make check
+## Validate the project
+check:
+`);
+
+    expect(result).toEqual([
+      { name: 'check', description: 'Validate the project', line: 2 },
     ]);
   });
 
@@ -166,6 +202,22 @@ build:
       { name: 'build', description: 'Keep concrete', line: 5 },
     ]);
   });
+
+  it('clears pending metadata after blank lines and ordinary comments', () => {
+    const result = parseMakefile(`## Stale after a blank line
+
+blank:
+# Usage: make commented VALUE=<value>
+## Stale after an ordinary comment
+# ordinary comment
+commented:
+kept: ## Kept inline
+`);
+
+    expect(result).toEqual([
+      { name: 'kept', description: 'Kept inline', line: 7 },
+    ]);
+  });
 });
 
 describe('splitArguments', () => {
@@ -178,7 +230,22 @@ describe('splitArguments', () => {
     ]);
   });
 
+  it('preserves explicitly empty and concatenated quoted arguments', () => {
+    expect(splitArguments(`"" '' prefix" middle "suffix EMPTY=""`)).toEqual([
+      '',
+      '',
+      'prefix middle suffix',
+      'EMPTY=',
+    ]);
+  });
+
+  it('returns no arguments for whitespace-only input and preserves a trailing escape', () => {
+    expect(splitArguments(' \t\n ')).toEqual([]);
+    expect(splitArguments('value\\')).toEqual(['value\\']);
+  });
+
   it('rejects unterminated quotes', () => {
     expect(() => splitArguments(`"unfinished`)).toThrow('Unterminated quoted argument.');
   });
 });
+

@@ -18,9 +18,11 @@
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.mts",
     "test/**/*.ts"
   ],
   "exclude": [
     "test/integration/**"
   ]
 }
+

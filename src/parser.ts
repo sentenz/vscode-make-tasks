@@ -130,34 +130,40 @@ export function parseMakefile(content: string): ParsedTarget[] {
 export function splitArguments(input: string): string[] {
   const result: string[] = [];
   let token = '';
+  let tokenStarted = false;
   let quote: 'single' | 'double' | undefined;
   let escaping = false;
 
   const push = (): void => {
-    if (token.length > 0) {
+    if (tokenStarted) {
       result.push(token);
       token = '';
+      tokenStarted = false;
     }
   };
 
   for (const character of input) {
     if (escaping) {
       token += character;
+      tokenStarted = true;
       escaping = false;
       continue;
     }
 
     if (character === '\\' && quote !== 'single') {
+      tokenStarted = true;
       escaping = true;
       continue;
     }
 
     if (character === "'" && quote !== 'double') {
+      tokenStarted = true;
       quote = quote === 'single' ? undefined : 'single';
       continue;
     }
 
     if (character === '"' && quote !== 'single') {
+      tokenStarted = true;
       quote = quote === 'double' ? undefined : 'double';
       continue;
     }
@@ -168,6 +174,7 @@ export function splitArguments(input: string): string[] {
     }
 
     token += character;
+    tokenStarted = true;
   }
 
   if (escaping) {
@@ -180,3 +187,4 @@ export function splitArguments(input: string): string[] {
   push();
   return result;
 }
+
