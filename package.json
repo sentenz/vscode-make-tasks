@@ -37,6 +37,9 @@
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
+  "bin": {
+    "make-tasks-mcp": "./dist/mcp/index.mjs"
+  },
   "files": [
     "dist/**",
     "assets/**",
@@ -222,8 +225,15 @@
     "compile:integration": "tsc -p tsconfig.integration.json",
     "test:integration": "npm run build && npm run compile:integration && node .integration-test/test/integration/runTest.js",
     "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "mcp:start": "npm run build && node dist/mcp/index.mjs",
+    "mcp:inspect": "npm run build && npx @modelcontextprotocol/inspector node dist/mcp/index.mjs",
     "watch": "tsc -p tsconfig.build.json --watch",
     "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.5.2"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

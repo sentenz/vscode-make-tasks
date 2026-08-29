@@ -5,6 +5,7 @@ A native VS Code task explorer for documented Makefile targets.
 - [1. Details](#1-details)
   - [1.1. Prerequisites](#11-prerequisites)
   - [1.2. Usage](#12-usage)
+  - [1.3. MCP Server](#13-mcp-server)
 - [2. Contribution](#2-contribution)
 
 ## 1. Details
@@ -108,6 +109,33 @@ A native VS Code task explorer for documented Makefile targets.
       .PHONY: build
       ```
 
+### 1.3. MCP Server
+
+The optional stdio MCP server exposes the extension's Makefile parser to AI agents without executing Make. Its `list_make_targets` tool returns documented targets, descriptions, categories, usage metadata, and zero-based source lines.
+
+```bash
+npm install
+npm run mcp:start
+```
+
+The server reads workspace-relative Makefile paths from the current directory. Set `MAKE_TASKS_MCP_ROOT` to use another workspace root. Requests that resolve outside that root are rejected.
+
+Example tool input:
+
+```json
+{
+  "makefile": "Makefile"
+}
+```
+
+Build and exercise the server with MCP Inspector:
+
+```bash
+npm run mcp:inspect
+```
+
+The server uses stdout exclusively for MCP messages and writes its readiness message to stderr.
+
 ## 2. Contribution
 
 1. Insights and Details
@@ -132,3 +160,4 @@ A native VS Code task explorer for documented Makefile targets.
       make vscode-extension-package
       make vscode-extension-install
       ```
+
