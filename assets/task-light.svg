@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <path fill="#424242" d="M3 2.25h6.1L13 6.15v7.6H3V2.25Zm1 1v9.5h8v-6H8.5v-3.5H4Zm5.5.71v1.79h1.79L9.5 3.96ZM5.5 6.1 10 8.5l-4.5 2.4V6.1Zm1 1.67v1.46l1.38-.73-1.38-.73Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+  <path d="M4.25 20V4L12 14.25L19.75 4V20"
+        fill="none"
+        stroke="#424242"
+        stroke-width="4.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
 </svg>
