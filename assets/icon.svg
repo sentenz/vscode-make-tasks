@@ -1,27 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#3b82f6"/>
-      <stop offset="1" stop-color="#0ea5a4"/>
-    </linearGradient>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feOffset dy="2" in="SourceAlpha" result="off"/>
-      <feGaussianBlur in="off" stdDeviation="2" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-
-  <!-- Background rounded square -->
-  <rect x="6" y="6" width="116" height="116" rx="18" fill="url(#g)" />
-
-  <!-- Slight inner panel for contrast -->
-  <rect x="18" y="18" width="92" height="92" rx="14" fill="#0f172a" opacity="0.12" />
-
-  <!-- Main glyph (re-using makefile path scaled up) -->
-  <g transform="translate(28,28) scale(3)" fill="#ffffff">
-    <path d="M4 3h12l4 4v14H4V3zm2 2v14h12V8h-3V5H6zm2 5h2.1l1.9 3.2 1.9-3.2H16v7h-2v-3.7l-2 3.1-2-3.1V17H8v-7z"/>
-  </g>
+  <path d="M26 106V22L64 70L102 22V106"
+        fill="none"
+        stroke="#3B82F6"
+        stroke-width="20"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
 </svg>
