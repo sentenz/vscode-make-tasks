@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.6.1](https://github.com/sentenz/vscode-make-tasks/compare/1.6.0...1.6.1) (2026-08-29)
+
+### Bug Fixes
+
+* **deps:** update npm dependencies ([#47](https://github.com/sentenz/vscode-make-tasks/issues/47)) ([f013e4c](https://github.com/sentenz/vscode-make-tasks/commit/f013e4c9cb5807217105110580c6147919c01215))
+
 ## [1.6.0](https://github.com/sentenz/vscode-make-tasks/compare/1.5.5...1.6.0) (2026-08-29)
 
 ### Features
