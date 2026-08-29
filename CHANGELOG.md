@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.6.0](https://github.com/sentenz/vscode-make-tasks/compare/1.5.5...1.6.0) (2026-08-29)
+
+### Features
+
+* **icons:** adopt Material 3 bold M monogram ([#51](https://github.com/sentenz/vscode-make-tasks/issues/51)) ([e181274](https://github.com/sentenz/vscode-make-tasks/commit/e181274f1a91acc3af66bc294962c0c69361d1f4))
+
 ## [1.5.5](https://github.com/sentenz/vscode-make-tasks/compare/1.5.4...1.5.5) (2026-08-09)
 
 ### Bug Fixes
