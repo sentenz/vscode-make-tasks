@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "javascript-typescript-jest": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/javascript-typescript-jest/SKILL.md",
+      "computedHash": "0073d19ab0275eb6a8200aced6789a53744667bd717b5d1f44ce708a1740e5d4"
+    },
+    "typescript-mcp-server-generator": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/typescript-mcp-server-generator/SKILL.md",
+      "computedHash": "389dd5b2f6bf325e142ae1e88833193935c120b4eb0abe34d479a0a788f3c887"
+    }
+  }
+}
