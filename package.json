@@ -233,19 +233,19 @@
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.0.0",
-    "zod": "4.5.2"
+    "zod": "4.6.2"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@types/mocha": "10.0.10",
-    "@types/node": "24.13.3",
-    "@types/vscode": "1.134.0",
+    "@types/node": "24.13.4",
+    "@types/vscode": "1.137.0",
     "@vscode/test-electron": "3.1.0",
     "@vscode/vsce": "3.9.2",
-    "eslint": "10.9.1",
+    "eslint": "10.10.0",
     "mocha": "11.8.0",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.68.0",
+    "typescript-eslint": "8.70.0",
     "vitest": "4.1.11"
   },
   "extensionKind": [
