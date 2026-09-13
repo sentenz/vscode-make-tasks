@@ -243,10 +243,10 @@
     "@vscode/test-electron": "3.1.0",
     "@vscode/vsce": "3.9.2",
     "eslint": "10.9.1",
-    "mocha": "11.8.0",
-    "typescript": "6.0.3",
+    "mocha": "12.0.1",
+    "typescript": "7.0.2",
     "typescript-eslint": "8.68.0",
-    "vitest": "4.1.11"
+    "vitest": "5.0.0"
   },
   "extensionKind": [
     "workspace"
