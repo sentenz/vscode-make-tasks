@@ -110,7 +110,7 @@
       "automerge": false
     },
     {
-      "description": "Group npm dependency updates.",
+      "description": "Group non-major npm dependency updates.",
       "matchManagers": [
         "npm"
       ],
@@ -122,7 +122,6 @@
         "package-lock.json"
       ],
       "matchUpdateTypes": [
-        "major",
         "minor",
         "patch"
       ],
@@ -312,6 +311,35 @@
       ],
       "matchPackageNames": [
         "@types/vscode"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Keep npm major dependency updates separate for compatibility review.",
+      "matchManagers": [
+        "npm"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false
+    },
+    {
+      "description": "Hold TypeScript major updates until the lint toolchain supports them.",
+      "matchManagers": [
+        "npm"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "typescript"
+      ],
+      "matchUpdateTypes": [
+        "major"
       ],
       "enabled": false
     }
