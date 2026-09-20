@@ -301,6 +301,19 @@
       "semanticCommitType": "fix",
       "semanticCommitScope": "deps",
       "automerge": false
+    },
+    {
+      "description": "Keep VS Code API typings aligned with the minimum supported VS Code version.",
+      "matchManagers": [
+        "npm"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@types/vscode"
+      ],
+      "enabled": false
     }
   ]
 }
