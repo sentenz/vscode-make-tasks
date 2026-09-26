@@ -160,4 +160,3 @@ The server uses stdout exclusively for MCP messages and writes its readiness mes
       make vsce-package
       make vsce-install
       ```
-
