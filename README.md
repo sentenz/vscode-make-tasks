@@ -155,9 +155,9 @@ The server uses stdout exclusively for MCP messages and writes its readiness mes
       > The repository Makefile provides documented targets for installing dependencies, validating changes, building, packaging, and installing the extension locally.
 
       ```bash
-      make vscode-extension-dependencies
-      make vscode-extension-build
-      make vscode-extension-package
-      make vscode-extension-install
+      make vsce-dependencies
+      make vsce-build
+      make vsce-package
+      make vsce-install
       ```
 

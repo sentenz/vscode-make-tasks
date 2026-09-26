@@ -569,10 +569,10 @@ VSCODE_CLI ?= code
 NPM ?= npm
 VSCE ?= $(NPM) exec -- vsce
 
-# Usage: make vscode-extension-id-check [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_ID=<publisher.name>]
+# Usage: make vsce-id-check [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_ID=<publisher.name>]
 #
 ## Check whether a VS Code Marketplace extension identity has a discoverable record
-vscode-extension-id-check: vscode-extension-dependencies
+vsce-id-check: vsce-dependencies
 	@test -f "$(VSCODE_EXTENSION_DIR_ABS)/package.json" || { \
 		echo "error: package.json not found in $(VSCODE_EXTENSION_DIR_ABS)" >&2; \
 		exit 2; \
@@ -583,7 +583,7 @@ vscode-extension-id-check: vscode-extension-dependencies
 		extension_id="$$(cd "$(VSCODE_EXTENSION_DIR_ABS)" && \
 			node -e 'const p = require("./package.json"); const publisher = typeof p.publisher === "string" ? p.publisher.trim() : ""; const name = typeof p.name === "string" ? p.name.trim() : ""; if (!publisher || !name) { console.error("error: package.json must define non-empty publisher and name fields"); process.exit(1); } process.stdout.write(publisher + "." + name);')" || exit 2; \
 	fi; \
-	tmp_dir="$$(mktemp -d 2>/dev/null || mktemp -d "$${TMPDIR:-/tmp}/vscode-extension-id-check.XXXXXX")"; \
+	tmp_dir="$$(mktemp -d 2>/dev/null || mktemp -d "$${TMPDIR:-/tmp}/vsce-id-check.XXXXXX")"; \
 	trap 'rm -rf "$$tmp_dir"' EXIT; \
 	stdout_file="$$tmp_dir/stdout"; \
 	stderr_file="$$tmp_dir/stderr"; \
@@ -606,12 +606,12 @@ vscode-extension-id-check: vscode-extension-dependencies
 	cat "$$stdout_file" >&2; \
 	cat "$$stderr_file" >&2; \
 	exit 2
-.PHONY: vscode-extension-id-check
+.PHONY: vsce-id-check
 
-# Usage: make vscode-extension-dependencies [VSCODE_EXTENSION_DIR=<dir>]
+# Usage: make vsce-dependencies [VSCODE_EXTENSION_DIR=<dir>]
 #
 ## Install the VS Code extension development dependencies
-vscode-extension-dependencies:
+vsce-dependencies:
 	@test -f "$(VSCODE_EXTENSION_DIR_ABS)/package.json" || { \
 		echo "error: package.json not found in $(VSCODE_EXTENSION_DIR_ABS)" >&2; \
 		exit 1; \
@@ -630,38 +630,38 @@ vscode-extension-dependencies:
 			$(NPM) install; \
 		fi; \
 	}
-.PHONY: vscode-extension-dependencies
+.PHONY: vsce-dependencies
 
-# Usage: make vscode-extension-build [VSCODE_EXTENSION_DIR=<dir>]
+# Usage: make vsce-build [VSCODE_EXTENSION_DIR=<dir>]
 #
 ## Validate, test, and build the VS Code extension
-vscode-extension-build: vscode-extension-dependencies
+vsce-build: vsce-dependencies
 	@cd "$(VSCODE_EXTENSION_DIR_ABS)" && $(NPM) run check
 	@cd "$(VSCODE_EXTENSION_DIR_ABS)" && $(NPM) run build
-.PHONY: vscode-extension-build
+.PHONY: vsce-build
 
-# Usage: make vscode-extension-package [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_OUT=<out>] [VSCODE_EXTENSION_VSIX=<file>]
+# Usage: make vsce-package [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_OUT=<out>] [VSCODE_EXTENSION_VSIX=<file>]
 #
 ## Build and package the VS Code extension as a VSIX archive
-vscode-extension-package: vscode-extension-dependencies
+vsce-package: vsce-dependencies
 	@mkdir -p "$(dir $(VSCODE_EXTENSION_VSIX_ABS))"
 
 	@cd "$(VSCODE_EXTENSION_DIR_ABS)" && \
 		$(VSCE) package --no-dependencies --out "$(VSCODE_EXTENSION_VSIX_ABS)"
-.PHONY: vscode-extension-package
+.PHONY: vsce-package
 
-# Usage: VSCE_PAT=<token> make vscode-extension-publish [VSCODE_EXTENSION_DIR=<dir>] [VSCE_PUBLISH_ARGS="patch|minor|major|<version>|..."]
+# Usage: VSCE_PAT=<token> make vsce-publish [VSCODE_EXTENSION_DIR=<dir>] [VSCE_PUBLISH_ARGS="patch|minor|major|<version>|..."]
 #
 ## Build and publish the VS Code extension to the Visual Studio Marketplace
-vscode-extension-publish: vscode-extension-dependencies
+vsce-publish: vsce-dependencies
 	@cd "$(VSCODE_EXTENSION_DIR_ABS)" && \
 		$(VSCE) publish --no-dependencies $(VSCE_PUBLISH_ARGS)
-.PHONY: vscode-extension-publish
+.PHONY: vsce-publish
 
-# Usage: make vscode-extension-install [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_OUT=<out>] [VSCODE_EXTENSION_VSIX=<file>] [VSCODE_CLI=code]
+# Usage: make vsce-install [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_OUT=<out>] [VSCODE_EXTENSION_VSIX=<file>] [VSCODE_CLI=code]
 #
 ## Package and install the VS Code extension locally
-vscode-extension-install: vscode-extension-package
+vsce-install: vsce-package
 	@command -v "$(VSCODE_CLI)" >/dev/null 2>&1 || { \
 		echo "error: $(VSCODE_CLI) is not installed or not available in PATH" >&2; \
 		exit 1; \
@@ -673,14 +673,14 @@ vscode-extension-install: vscode-extension-package
 	}
 
 	@"$(VSCODE_CLI)" --install-extension "$(VSCODE_EXTENSION_VSIX_ABS)" --force
-.PHONY: vscode-extension-install
+.PHONY: vsce-install
 
-# Usage: make vscode-extension-uninstall [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_ID=<publisher.name>] [VSCODE_CLI=code]
+# Usage: make vsce-uninstall [VSCODE_EXTENSION_DIR=<dir>] [VSCODE_EXTENSION_ID=<publisher.name>] [VSCODE_CLI=code]
 #
 # NOTE VSCODE_EXTENSION_ID is omitted, when the identifier is derived from package.json as "<publisher>.<name>".
 #
 ## Uninstall the VS Code extension
-vscode-extension-uninstall:
+vsce-uninstall:
 	@command -v "$(VSCODE_CLI)" >/dev/null 2>&1 || { \
 		echo "error: $(VSCODE_CLI) is not installed or not available in PATH" >&2; \
 		exit 1; \
@@ -697,27 +697,27 @@ vscode-extension-uninstall:
 			node -p "const p = require('./package.json'); p.publisher + '.' + p.name")"; \
 	fi; \
 	"$(VSCODE_CLI)" --uninstall-extension "$$extension_id"
-.PHONY: vscode-extension-uninstall
+.PHONY: vsce-uninstall
 
-# Usage: make vscode-extension-reinstall [configuration...]
+# Usage: make vsce-reinstall [configuration...]
 #
 ## Uninstall, rebuild, package, and install the VS Code extension
-vscode-extension-reinstall:
-	@$(MAKE) vscode-extension-uninstall \
+vsce-reinstall:
+	@$(MAKE) vsce-uninstall \
 		VSCODE_EXTENSION_DIR="$(VSCODE_EXTENSION_DIR)" \
 		VSCODE_EXTENSION_ID="$(VSCODE_EXTENSION_ID)" \
 		VSCODE_CLI="$(VSCODE_CLI)" || true
 
-	@$(MAKE) vscode-extension-install \
+	@$(MAKE) vsce-install \
 		VSCODE_EXTENSION_DIR="$(VSCODE_EXTENSION_DIR)" \
 		VSCODE_EXTENSION_OUT="$(VSCODE_EXTENSION_OUT)" \
 		VSCODE_EXTENSION_VSIX="$(VSCODE_EXTENSION_VSIX)" \
 		VSCODE_CLI="$(VSCODE_CLI)"
-.PHONY: vscode-extension-reinstall
+.PHONY: vsce-reinstall
 
-# Usage: make vscode-extension-clean [VSCODE_EXTENSION_OUT=<out>]
+# Usage: make vsce-clean [VSCODE_EXTENSION_OUT=<out>]
 #
 ## Remove generated VS Code extension artifacts
-vscode-extension-clean:
+vsce-clean:
 	@rm -rf "$(VSCODE_EXTENSION_OUT_ABS)"
-.PHONY: vscode-extension-clean
+.PHONY: vsce-clean
