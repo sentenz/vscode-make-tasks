@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.3](https://github.com/sentenz/vscode-make-tasks/compare/1.7.2...1.7.3) (2026-09-26)
+
+### Bug Fixes
+
+* **deps:** update npm dependencies ([#62](https://github.com/sentenz/vscode-make-tasks/issues/62)) ([01e7b32](https://github.com/sentenz/vscode-make-tasks/commit/01e7b321653dac26db1a6f0111e51c5a81d32d68))
+
 ## [1.7.2](https://github.com/sentenz/vscode-make-tasks/compare/1.7.1...1.7.2) (2026-09-20)
 
 ### Bug Fixes
