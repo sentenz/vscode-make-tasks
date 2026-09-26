@@ -39,19 +39,23 @@ help:
 
 # ─── Setup & Teardown ────────────────────────────────────────────────────────────────────────────
 
-## Initialize a software development workspace with requisites
 bootstrap:
-	cd $(@D)/scripts && ./bootstrap.sh
+	@if ! command -v node >/dev/null 2>&1 || [ "$$(node -p 'process.versions.node.split(".")[0]')" != "22" ]; then \
+		curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -; \
+		sudo apt-get install -y nodejs; \
+	fi
 .PHONY: bootstrap
 
 ## Install and configure all dependencies essential for development
 setup:
-	cd $(@D)/scripts && ./setup.sh
 .PHONY: setup
 
 ## Remove development artifacts and restore the host to its pre-setup state
 teardown:
-	cd $(@D)/scripts && ./teardown.sh
+	@if command -v node >/dev/null 2>&1 && [ "$$(node -p 'process.versions.node.split(".")[0]')" = "22" ]; then \
+		sudo apt-get remove -y nodejs; \
+		sudo apt-get autoremove -y; \
+	fi
 .PHONY: teardown
 
 # ─── Git Hooks Manager ───────────────────────────────────────────────────────────────────────────
