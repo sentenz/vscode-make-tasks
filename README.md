@@ -141,7 +141,7 @@ The server uses stdout exclusively for MCP messages and writes its readiness mes
 1. Insights and Details
 
     - [Node.js](https://nodejs.org/en/download/)
-      > Node.js (>=22) is required to build, test, and package the extension.
+      > Node.js 22.12+ (22.x), 24.x, or 26+ is required to build, test, and package the extension.
 
     - VS Code [Extension Anatomy](https://code.visualstudio.com/api/get-started/extension-anatomy)
       > Anatomy of a VS Code extension, including the structure of the extension folder and the purpose of each file.

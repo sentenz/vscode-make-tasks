@@ -16,12 +16,12 @@
   },
   "engines": {
     "vscode": "^1.134.0",
-    "node": ">=22"
+    "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": ">=22",
+      "version": "^22.12.0 || ^24.0.0 || >=26.0.0",
       "onFail": "error"
     }
   },
@@ -221,7 +221,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "npm run test:unit",
-    "test:unit": "vitest run --exclude \"test/integration/**\"",
+    "test:unit": "vitest run --exclude \"test/integration/**\" --exclude \".integration-test/**\"",
     "compile:integration": "tsc -p tsconfig.integration.json",
     "test:integration": "npm run build && npm run compile:integration && node .integration-test/test/integration/runTest.js",
     "build": "tsc -p tsconfig.build.json",
@@ -246,7 +246,7 @@
     "mocha": "12.0.2",
     "typescript": "6.0.3",
     "typescript-eslint": "8.70.1",
-    "vitest": "4.1.11"
+    "vitest": "5.0.2"
   },
   "extensionKind": [
     "workspace"
