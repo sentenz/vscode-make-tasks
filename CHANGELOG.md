@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.4](https://github.com/sentenz/vscode-make-tasks/compare/1.7.3...1.7.4) (2026-09-29)
+
+### Bug Fixes
+
+* **deps:** update dependency @types/node to v24.19.0 ([#67](https://github.com/sentenz/vscode-make-tasks/issues/67)) ([ad908ac](https://github.com/sentenz/vscode-make-tasks/commit/ad908ac22f62f476aa95f4c46b9e4d8f3a9b486c))
+
 ## [1.7.3](https://github.com/sentenz/vscode-make-tasks/compare/1.7.2...1.7.3) (2026-09-26)
 
 ### Bug Fixes
