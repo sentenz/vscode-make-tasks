@@ -84,7 +84,7 @@ skills-agent-update:
 
 # ─── Dependency Manager ──────────────────────────────────────────────────────────────────────────
 
-DEPENDENCY_RENOVATE_IMAGE ?= docker.io/renovate/renovate:44.115.10@sha256:e262ed52b23dd8c545c80faf5b1ad5c95a07b3f198888de8d7b8928f45c307c7
+DEPENDENCY_RENOVATE_IMAGE ?= docker.io/renovate/renovate:44.132.5@sha256:2c801b47ce82c349453e554188abe4fa0b51bde333cfea54e67ad8a88d525087
 DEPENDENCY_RENOVATE_ALIAS := docker run --rm -v "${PWD}:/workspace" -w /workspace -e LOG_LEVEL=debug -e RENOVATE_REPOSITORIES -e RENOVATE_TOKEN=$(RENOVATE_TOKEN) "$(DEPENDENCY_RENOVATE_IMAGE)"
 
 ## Update project dependencies locally using Renovate and generate a report
@@ -231,7 +231,7 @@ secrets-sops-view:
 
 # ─── Policy Manager ──────────────────────────────────────────────────────────────────────────────
 
-POLICY_CONFTEST_IMAGE ?= docker.io/openpolicyagent/conftest:v0.70.1@sha256:82f23e0e1f3faf2f3798f4b1974676c1aed96b05c6656ec6820435c31867c532
+POLICY_CONFTEST_IMAGE ?= docker.io/openpolicyagent/conftest:v0.71.0@sha256:3ec6dad358db08acecda56b7a3184037cd810394a65046fafa4f33c7750141b1
 POLICY_CONFTEST_ALIAS := docker run --rm -v "${PWD}:/workspace" -w /workspace "$(POLICY_CONFTEST_IMAGE)"
 
 # Usage: make policy-conftest-test <filepath>
@@ -248,7 +248,7 @@ policy-conftest-test:
 	$(POLICY_CONFTEST_ALIAS) test "$(filter-out $@,$(MAKECMDGOALS))" > logs/policy/conftest-report.json 2>&1
 .PHONY: policy-conftest-test
 
-POLICY_REGAL_IMAGE ?= ghcr.io/open-policy-agent/regal:0.42.0@sha256:07984036043f772a1f921bd0ad9045b8bd9dc58460a1d76f476c458dc8a98b16
+POLICY_REGAL_IMAGE ?= ghcr.io/open-policy-agent/regal:0.43.0@sha256:29460f0ec1340d37f6c0c74bcbd88dd232fd8382c7a2337f0684415bd4c46da1
 POLICY_REGAL_ALIAS := docker run --rm -v "${PWD}:/workspace" -w /workspace "$(POLICY_REGAL_IMAGE)"
 
 # Usage: make policy-regal-lint <filepath>
@@ -267,7 +267,7 @@ policy-regal-lint:
 
 # ─── SAST Manager ────────────────────────────────────────────────────────────────────────────────
 
-SAST_SEMGREP_IMAGE ?= semgrep/semgrep:1.178.0@sha256:32e459968daabe7ab86968184a29109b9564aa00392401156f9788452b42786b
+SAST_SEMGREP_IMAGE ?= semgrep/semgrep:1.179.0@sha256:93963d9295a366f59e4850127b1550400ee7b388f04fe144e4a1f6325d96e01b
 SAST_SEMGREP_ALIAS := docker run --rm -v "${PWD}:/workspace" -w /workspace "$(SAST_SEMGREP_IMAGE)"
 SAST_SEMGREP_FILES ?= .
 SAST_SEMGREP_FILTER = $(if $(strip $(SAST_SEMGREP_FILES)),$(SAST_SEMGREP_FILES),.)
@@ -279,7 +279,7 @@ sast-semgrep-scan:
 	$(SAST_SEMGREP_ALIAS) semgrep scan --config auto --error --json --output logs/sast/semgrep.json $(SAST_SEMGREP_FILTER) 2> logs/sast/semgrep.log
 .PHONY: sast-semgrep-scan
 
-SAST_TRIVY_IMAGE ?= aquasec/trivy:0.74.0@sha256:62b1e65e8869bc4b4c6aa4fa2b21595256c7c2f6018a9d9ad61caf87187c1969
+SAST_TRIVY_IMAGE ?= aquasec/trivy:0.75.0@sha256:af6acf9a6b85dfe389a1941505c0ce9efef52a4719635e1a962f022a3d855daa
 SAST_TRIVY_ALIAS := docker run --rm -v "${PWD}:/workspace" -w /workspace "$(SAST_TRIVY_IMAGE)"
 SAST_TRIVY_FILES ?= .
 
