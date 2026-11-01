@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.7](https://github.com/sentenz/vscode-make-tasks/compare/1.7.6...1.7.7) (2026-11-01)
+
+### Bug Fixes
+
+* **deps:** update node.js to v26 ([#79](https://github.com/sentenz/vscode-make-tasks/issues/79)) ([a1c4520](https://github.com/sentenz/vscode-make-tasks/commit/a1c4520a125a80e6bde6eaf518ef088a87c9f393))
+
 ## [1.7.6](https://github.com/sentenz/vscode-make-tasks/compare/1.7.5...1.7.6) (2026-10-18)
 
 ### Bug Fixes
