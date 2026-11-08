@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.9](https://github.com/sentenz/vscode-make-tasks/compare/1.7.8...1.7.9) (2026-11-08)
+
+### Bug Fixes
+
+* **deps:** update dependency vitest to v5.1.0 ([#84](https://github.com/sentenz/vscode-make-tasks/issues/84)) ([671506a](https://github.com/sentenz/vscode-make-tasks/commit/671506a48f64bd69920e964817043f766537a061))
+
 ## [1.7.8](https://github.com/sentenz/vscode-make-tasks/compare/1.7.7...1.7.8) (2026-11-01)
 
 ### Bug Fixes
