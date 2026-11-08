@@ -41,7 +41,7 @@ jobs:
 
       - name: Run VS Code Extension
         id: extension
-        uses: sentenz/actions/vscode-extension@cfa8ce409cbcfbce8bd5534108b145e185bb2406 # 1.5.5
+        uses: sentenz/actions/vscode-extension@4e9e78d246486ad62d8df160a4d07020ece9668a # 1.5.6
         with:
           output-path: "out/extension.vsix"
           no-dependencies: "true"
@@ -97,7 +97,7 @@ jobs:
           fi
 
       - name: Package VS Code Extension
-        uses: sentenz/actions/vscode-extension@cfa8ce409cbcfbce8bd5534108b145e185bb2406 # 1.5.5
+        uses: sentenz/actions/vscode-extension@4e9e78d246486ad62d8df160a4d07020ece9668a # 1.5.6
         with:
           version: ${{ inputs.version }}
           output-path: "out/extension.vsix"
@@ -112,7 +112,7 @@ jobs:
           unzip -l "${VSIX_PATH}" | grep -F "extension/package.json"
 
       - name: Attach VSIX to GitHub Release
-        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
         with:
           tag_name: ${{ inputs.version }}
           files: out/extension.vsix
